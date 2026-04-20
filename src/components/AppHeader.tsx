@@ -55,13 +55,13 @@ export const AppHeader = memo(function AppHeader() {
   })();
 
   return (
-    <header className="flex h-16 items-center justify-between border-b border-header-border bg-header-bg px-6">
+    <header className="flex h-16 items-center justify-between border-b border-header-border bg-header-bg px-6 transition-colors-smooth shadow-sm">
       <div className="flex items-center gap-3">
         <motion.button
-          whileHover={{ scale: 1.05 }}
+          whileHover={{ scale: 1.08 }}
           whileTap={{ scale: 0.92 }}
           onClick={toggleCollapsed}
-          className="rounded-xl p-2 text-header-fg transition-colors hover:bg-accent lg:hidden"
+          className="button-premium rounded-xl p-2 text-header-fg border border-header-border transition-colors-smooth hover:bg-primary/10 hover:border-primary focus:ring-2 focus:ring-primary/30 lg:hidden"
           aria-label="Toggle menu"
         >
           <Menu className="h-5 w-5" />
@@ -103,7 +103,7 @@ export const AppHeader = memo(function AppHeader() {
         <motion.button
           whileHover={{ scale: 1.08 }}
           whileTap={{ scale: 0.92 }}
-          className="relative rounded-xl p-2.5 text-header-fg transition-colors hover:bg-accent"
+          className="button-premium relative rounded-xl p-2.5 text-header-fg border border-header-border transition-colors-smooth hover:bg-primary/10 hover:border-primary focus:ring-2 focus:ring-primary/30"
           aria-label="Notifications"
         >
           <Bell className="h-[18px] w-[18px]" />
@@ -115,10 +115,10 @@ export const AppHeader = memo(function AppHeader() {
 
         {/* Theme toggle */}
         <motion.button
-          whileHover={{ scale: 1.08, rotate: 15 }}
-          whileTap={{ scale: 0.92 }}
+          whileHover={{ scale: 1.12, rotate: 180 }}
+          whileTap={{ scale: 0.88 }}
           onClick={toggleTheme}
-          className="rounded-xl p-2.5 text-header-fg transition-colors hover:bg-accent"
+          className="button-premium rounded-xl p-2.5 text-header-fg border border-header-border transition-colors-smooth hover:bg-primary/10 hover:border-primary focus:ring-2 focus:ring-primary/30"
           aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
         >
           <AnimatePresence mode="wait" initial={false}>
@@ -139,7 +139,7 @@ export const AppHeader = memo(function AppHeader() {
         <div className="relative group">
           <motion.button
             whileHover={{ scale: 1.02 }}
-            className="flex items-center gap-3 rounded-xl px-3 py-2 transition-colors hover:bg-accent"
+            className="button-premium flex items-center gap-3 rounded-xl px-3 py-2 border border-header-border transition-colors-smooth hover:bg-primary/10 hover:border-primary focus:ring-2 focus:ring-primary/30"
             aria-label="User menu"
             aria-haspopup="true"
           >

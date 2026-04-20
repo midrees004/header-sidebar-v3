@@ -36,10 +36,10 @@ const SidebarLink = memo(function SidebarLink({
         to={item.resolvedUrl ?? '#'}
         title={collapsed ? item.label : undefined}
         aria-current={active ? 'page' : undefined}
-        className={`group relative flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-200
+        className={`interactive-element group relative flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-250
           ${active
-            ? 'bg-sidebar-active text-sidebar-active-fg shadow-md shadow-sidebar-active/20'
-            : 'text-sidebar-fg hover:bg-sidebar-hover'
+            ? 'bg-sidebar-active text-sidebar-active-fg shadow-md shadow-sidebar-active/30 border border-sidebar-active-fg/30'
+            : 'text-sidebar-fg hover:bg-sidebar-hover border border-transparent hover:border-sidebar-active/50 hover:shadow-md hover:shadow-sidebar-active/10'
           }
           ${collapsed ? 'justify-center px-2' : ''}
         `}
@@ -227,7 +227,7 @@ export function AppSidebar() {
     <motion.aside
       animate={{ width: collapsed ? 68 : 264 }}
       transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-      className="fixed left-0 top-0 z-40 flex h-screen flex-col bg-sidebar-bg"
+      className="sidebar-transition fixed left-0 top-0 z-40 flex h-screen flex-col bg-sidebar-bg border-r border-sidebar-border transition-colors-smooth shadow-lg"
       role="navigation"
       aria-label="Main navigation"
     >
@@ -294,7 +294,7 @@ export function AppSidebar() {
           initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="mx-3 my-3 flex items-center gap-3 rounded-xl bg-sidebar-hover/60 px-3 py-2.5 backdrop-blur-sm"
+          className="interactive-element mx-3 my-3 flex items-center gap-3 rounded-xl bg-sidebar-hover/60 px-3 py-2.5 backdrop-blur-lg border border-sidebar-active/30 transition-colors-smooth hover:bg-sidebar-hover/80 hover:border-sidebar-active/60 hover:shadow-lg hover:shadow-sidebar-active/20"
         >
           <motion.div
             whileHover={{ scale: 1.08 }}

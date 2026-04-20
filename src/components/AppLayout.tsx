@@ -28,7 +28,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
   if (!isAuthenticated) return null;
 
   return (
-    <div className="flex min-h-screen bg-background">
+    <div className="flex min-h-screen bg-background transition-colors-smooth">
       <AppSidebar />
       <motion.div
         animate={{ marginLeft: collapsed ? 68 : 264 }}
@@ -37,10 +37,10 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
       >
         <AppHeader />
         <motion.main
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, delay: 0.1 }}
-          className="flex-1 p-6"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3, delay: 0.05 }}
+          className="flex-1 space-y-5 p-6"
         >
           {children}
         </motion.main>

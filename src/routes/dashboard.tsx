@@ -2,8 +2,7 @@ import { createFileRoute } from '@tanstack/react-router';
 import type { ComponentType } from 'react';
 import { motion } from 'framer-motion';
 import { format, isValid, parse } from 'date-fns';
-import type { GridColDef } from '@mui/x-data-grid';
-import {
+import type { GridColDef } from '@mui/x-data-grid';import { Tooltip } from '@mui/material';import {
   ArrowUpRight,
   BookOpenText,
   CalendarClock,
@@ -13,110 +12,12 @@ import {
 } from 'lucide-react';
 import { AppLayout } from '@/components/AppLayout';
 import { AppDataGrid } from '@/components/AppDataGrid';
+import { dashboardPayload } from '@/data/dashboardPayload';
 import { cn } from '@/lib/utils';
 
 export const Route = createFileRoute('/dashboard')({
   component: DashboardPage,
 });
-
-const dashboardPayload = {
-  TotalStudents: 133,
-  TotalPrograms: 500,
-  data: [
-    {
-      id: 1,
-      std_id: '1006dcaa-da8a-27b1-2aaf-6883495d762e',
-      std_name: 'Ghala S F S  ALMOQAHWI',
-      std_nationality: 'kuwaiti',
-      std_crm_number: 'KSA-HQ-C-020283',
-      std_phone_mobile: '+96598899586',
-      std_gender: 'female',
-      std_passport: 'P06924287',
-      std_dob: '31-12-2007',
-      std_stage: 'Commenced & Pipelined) (PKG',
-      std_counselor: 'Anas Tarman Counselor Virtual Office',
-      std_counselor_uname: 'a.tarman_cn_vf',
-      std_adm_officer: 'Angela Saguid',
-      std_adm_officer_uname: 'angela',
-      std_office: 'HQ',
-      std_subagent: 'Massar Tullabi',
-      std_date_entered: 'Jul 25 2025',
-      std_date_entered_year: '2025',
-      std_date_entered_month: '7',
-      std_email: 'g.almogahwi@gmail.com',
-      opp_id: 'cc2f4210-efac-e337-386d-68834a2a8596',
-      opp_name: 'AUT University Certificate in Foundation Studies - Standard',
-      opp_institute_name: 'UP Education',
-      opp_course_level: 'Foundation',
-      opp_counselor: 'Anas Tarman Counselor Virtual Office',
-      opp_counselor_uname: 'a.tarman_cn_vf',
-      opp_adm_officer: 'Angela Saguid',
-      opp_adm_officer_uname: 'angela',
-      opp_office: 'HQ',
-      opp_subagent: 'Massar Tullabi',
-      opp_salaes_stage: 'Commenced',
-      opp_commence_date: '02-Feb-2026',
-      opp_commence_date_year: '2026',
-      opp_commence_date_month: '2',
-      opp_last_stage_change_date: '09-Dec-2025',
-      opp_date_entered: '25-Jul-2025',
-      opp_date_entered_year: '2025',
-      opp_date_entered_month: '7',
-      std_created_by: null,
-      std_lead_source: null,
-      std_date_entered_iso: null,
-      opp_commence_date_iso: null,
-      opp_last_stage_change_date_iso: null,
-      opp_date_entered_iso: null,
-    },
-    {
-      id: 2,
-      std_id: '1006dcaa-da8a-27b1-2aaf-6883495d762e',
-      std_name: 'Ghala S F S  ALMOQAHWI',
-      std_nationality: 'kuwaiti',
-      std_crm_number: 'KSA-HQ-C-020283',
-      std_phone_mobile: '+96598899586',
-      std_gender: 'female',
-      std_passport: 'P06924287',
-      std_dob: '31-12-2007',
-      std_stage: 'Commenced & Pipelined) (PKG',
-      std_counselor: 'Anas Tarman Counselor Virtual Office',
-      std_counselor_uname: 'a.tarman_cn_vf',
-      std_adm_officer: 'Angela Saguid',
-      std_adm_officer_uname: 'angela',
-      std_office: 'HQ',
-      std_subagent: 'Massar Tullabi',
-      std_date_entered: 'Jul 25 2025',
-      std_date_entered_year: '2025',
-      std_date_entered_month: '7',
-      std_email: 'g.almogahwi@gmail.com',
-      opp_id: 'a55126d1-ebfa-8f2b-0e09-68834aa18e2f',
-      opp_name: 'Bachelor of Health Science  Podiatry ',
-      opp_institute_name: 'Auckland University of Technology',
-      opp_course_level: 'Undergraduate',
-      opp_counselor: 'Anas Tarman Counselor Virtual Office',
-      opp_counselor_uname: 'a.tarman_cn_vf',
-      opp_adm_officer: 'Angela Saguid',
-      opp_adm_officer_uname: 'angela',
-      opp_office: 'HQ',
-      opp_subagent: 'Massar Tullabi',
-      opp_salaes_stage: 'Pipeline First Commencement',
-      opp_commence_date: '22-Feb-2027',
-      opp_commence_date_year: '2027',
-      opp_commence_date_month: '2',
-      opp_last_stage_change_date: '09-Dec-2025',
-      opp_date_entered: '25-Jul-2025',
-      opp_date_entered_year: '2025',
-      opp_date_entered_month: '7',
-      std_created_by: null,
-      std_lead_source: null,
-      std_date_entered_iso: null,
-      opp_commence_date_iso: null,
-      opp_last_stage_change_date_iso: null,
-      opp_date_entered_iso: null,
-    },
-  ],
-};
 
 type SourceRow = (typeof dashboardPayload.data)[number];
 
@@ -165,18 +66,18 @@ function getDateSortValue(value: string) {
 function createDashboardRows(data: SourceRow[]): DashboardRow[] {
   return data.map((item) => ({
     id: item.id,
-    studentName: cleanText(item.std_name),
-    nationality: toTitleCase(item.std_nationality),
-    programName: cleanText(item.opp_name),
-    stage: cleanText(item.opp_salaes_stage || item.std_stage),
-    commenceDate: formatReadableDate(item.opp_commence_date),
-    commenceDateSort: getDateSortValue(item.opp_commence_date),
-    institute: cleanText(item.opp_institute_name),
-    level: cleanText(item.opp_course_level),
-    counselor: cleanText(item.opp_counselor),
-    crmNumber: item.std_crm_number,
-    email: item.std_email,
-    phone: item.std_phone_mobile,
+    studentName: cleanText(item.std_name || ''),
+    nationality: toTitleCase(item.std_nationality || ''),
+    programName: cleanText(item.opp_name || ''),
+    stage: cleanText(item.opp_salaes_stage || item.std_stage || ''),
+    commenceDate: formatReadableDate(item.opp_commence_date || ''),
+    commenceDateSort: getDateSortValue(item.opp_commence_date || ''),
+    institute: cleanText(item.opp_institute_name || ''),
+    level: cleanText(item.opp_course_level || ''),
+    counselor: cleanText(item.opp_counselor || ''),
+    crmNumber: item.std_crm_number || '',
+    email: item.std_email || '',
+    phone: item.std_phone_mobile || '',
   }));
 }
 
@@ -200,8 +101,8 @@ function MetricCard({
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.35, delay, ease: 'easeOut' }}
-      whileHover={{ y: -4, scale: 1.01 }}
-      className="relative overflow-hidden rounded-[28px] border border-white/65 bg-white/95 p-6 shadow-[0_24px_60px_-32px_rgba(15,23,42,0.55)] backdrop-blur dark:border-white/10 dark:bg-card/85"
+      whileHover={{ y: -6, scale: 1.02 }}
+      className="group relative overflow-hidden rounded-[28px] gradient-border gradient-border-hover p-6 shadow-premium backdrop-blur-sm interactive-element"
     >
       <div
         className={cn(
@@ -209,24 +110,30 @@ function MetricCard({
           accentClassName
         )}
       />
-      <div className="flex items-start justify-between gap-4">
+      <div className="relative z-10 flex items-start justify-between gap-4">
         <div>
           <p className="text-sm font-medium text-muted-foreground">{title}</p>
           <p className="mt-4 text-4xl font-semibold tracking-tight text-foreground">{value}</p>
           <p className="mt-2 text-sm leading-6 text-muted-foreground">{subtitle}</p>
         </div>
-        <div
+        <motion.div
+          whileHover={{ rotate: 5, scale: 1.1 }}
           className={cn(
-            'flex h-14 w-14 items-center justify-center rounded-2xl border border-white/60 bg-gradient-to-br shadow-sm dark:border-white/10',
+            'flex h-14 w-14 items-center justify-center rounded-2xl border border-white/60 bg-gradient-to-br shadow-lg dark:border-white/20',
             accentClassName
           )}
         >
-          <Icon className="h-6 w-6 text-white" />
-        </div>
+          <Icon className="h-6 w-6 text-white drop-shadow-sm" />
+        </motion.div>
       </div>
-      <div className="mt-6 flex items-center gap-2 text-sm font-medium text-primary">
-        <ArrowUpRight className="h-4 w-4" />
-        Live overview
+      <div className="relative z-10 mt-6 flex items-center gap-2 text-sm font-medium text-primary">
+        <motion.div
+          whileHover={{ x: 2 }}
+          className="transition-transform duration-200"
+        >
+          <ArrowUpRight className="h-4 w-4" />
+        </motion.div>
+        <span className="text-shimmer">Live overview</span>
       </div>
     </motion.div>
   );
@@ -265,7 +172,11 @@ function DashboardPage() {
       minWidth: 260,
       renderCell: ({ row, value }) => (
         <div className="flex min-w-0 flex-col py-2">
-          <span className="line-clamp-1 font-medium text-foreground">{value}</span>
+          <Tooltip title={String(value)} placement="top" arrow>
+            <span className="line-clamp-1 font-medium text-foreground cursor-pointer hover:text-primary transition-colors">
+              {value}
+            </span>
+          </Tooltip>
           <span className="line-clamp-1 text-xs text-muted-foreground">{row.institute}</span>
         </div>
       ),
@@ -311,50 +222,99 @@ function DashboardPage() {
         <span className="line-clamp-1 text-sm text-muted-foreground">{String(value)}</span>
       ),
     },
+    {
+      field: 'email',
+      headerName: 'Email',
+      minWidth: 200,
+      flex: 1.2,
+      renderCell: ({ value }) => (
+        <span className="line-clamp-1 text-sm text-muted-foreground">{String(value)}</span>
+      ),
+    },
+    {
+      field: 'phone',
+      headerName: 'Phone',
+      minWidth: 160,
+      flex: 0.9,
+      renderCell: ({ value }) => (
+        <span className="line-clamp-1 text-sm text-muted-foreground">{String(value)}</span>
+      ),
+    },
   ];
 
   return (
     <AppLayout>
       <div className="relative isolate mx-auto max-w-7xl">
-        <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-72 rounded-[40px] bg-[radial-gradient(circle_at_top_left,_rgba(58,123,213,0.18),_transparent_42%),radial-gradient(circle_at_top_right,_rgba(14,165,233,0.14),_transparent_28%),linear-gradient(180deg,rgba(255,255,255,0.95),rgba(255,255,255,0))] dark:bg-[radial-gradient(circle_at_top_left,_rgba(58,123,213,0.22),_transparent_40%),radial-gradient(circle_at_top_right,_rgba(14,165,233,0.16),_transparent_30%),linear-gradient(180deg,rgba(15,23,42,0.2),rgba(15,23,42,0))]" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-72 rounded-[40px] bg-[radial-gradient(circle_at_top_left,_rgba(0,85,255,0.12),_transparent_50%),radial-gradient(circle_at_top_right,_rgba(0,212,255,0.08),_transparent_40%),radial-gradient(circle_at_bottom_left,_rgba(255,0,255,0.06),_transparent_60%),linear-gradient(180deg,rgba(255,255,255,0.95),rgba(255,255,255,0))] dark:bg-[radial-gradient(circle_at_top_left,_rgba(0,160,255,0.15),_transparent_50%),radial-gradient(circle_at_top_right,_rgba(0,255,255,0.1),_transparent_40%),radial-gradient(circle_at_bottom_left,_rgba(255,0,255,0.08),_transparent_60%),linear-gradient(180deg,rgba(0,0,0,0.9),rgba(0,0,0,0))]" />
 
         <motion.section
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.35, ease: 'easeOut' }}
-          className="rounded-[32px] border border-white/70 bg-white/75 p-8 shadow-[0_28px_80px_-40px_rgba(15,23,42,0.45)] backdrop-blur-sm dark:border-white/10 dark:bg-card/75"
+          className="gradient-border gradient-border-hover rounded-[32px] p-8 shadow-premium backdrop-blur-sm interactive-element"
         >
           <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-3xl">
-              <div className="inline-flex items-center gap-2 rounded-full border border-primary/15 bg-primary/8 px-4 py-2 text-xs font-semibold tracking-[0.2em] text-primary uppercase">
-                <Sparkles className="h-3.5 w-3.5" />
-                Admissions Intelligence
-              </div>
-              <h1 className="mt-5 text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-4 py-2 text-xs font-semibold tracking-[0.2em] text-primary uppercase shadow-sm"
+              >
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                >
+                  <Sparkles className="h-3.5 w-3.5" />
+                </motion.div>
+                <span className="text-shimmer">Admissions Intelligence</span>
+              </motion.div>
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="mt-5 text-4xl font-semibold tracking-tight text-foreground sm:text-5xl"
+              >
                 A premium, at-a-glance view of your student pipeline.
-              </h1>
-              <p className="mt-4 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg">
+              </motion.h1>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="mt-4 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg"
+              >
                 Review every active record without pagination friction, surface key milestones
                 quickly, and keep the team aligned on intake momentum.
-              </p>
+              </motion.p>
             </div>
 
-            <div className="grid gap-3 sm:grid-cols-2 lg:w-[320px]">
-              <div className="rounded-[24px] border border-border/70 bg-background/80 p-4 shadow-sm">
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="grid gap-3 sm:grid-cols-2 lg:w-[320px]"
+            >
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                className="rounded-[24px] border border-border/70 bg-background/80 p-4 shadow-sm backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:border-primary/30"
+              >
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
                   Last Intake
                 </p>
                 <p className="mt-2 text-lg font-semibold text-foreground">
                   {formatStudentDate(dashboardPayload.data[0]?.std_date_entered ?? '')}
                 </p>
-              </div>
-              <div className="rounded-[24px] border border-border/70 bg-background/80 p-4 shadow-sm">
+              </motion.div>
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                className="rounded-[24px] border border-border/70 bg-background/80 p-4 shadow-sm backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:border-primary/30"
+              >
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
                   Next Commence
                 </p>
                 <p className="mt-2 text-lg font-semibold text-foreground">{rows[0]?.commenceDate}</p>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </div>
         </motion.section>
 
@@ -400,12 +360,16 @@ function DashboardPage() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: 0.18 + index * 0.05 }}
-              className="rounded-[24px] border border-border/70 bg-background/70 p-5 shadow-sm"
+              whileHover={{ y: -4, scale: 1.02 }}
+              className="group rounded-[24px] border border-border/70 bg-background/80 p-5 shadow-sm backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:border-primary/30 interactive-element"
             >
               <div className="flex items-center gap-3">
-                <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                <motion.div
+                  whileHover={{ rotate: 10, scale: 1.1 }}
+                  className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/10 text-primary shadow-sm transition-all duration-300 group-hover:bg-primary group-hover:text-primary-foreground"
+                >
                   <item.icon className="h-5 w-5" />
-                </div>
+                </motion.div>
                 <div>
                   <p className="text-sm text-muted-foreground">{item.label}</p>
                   <p className="text-base font-semibold text-foreground">{item.value}</p>
